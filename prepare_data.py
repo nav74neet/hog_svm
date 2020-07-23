@@ -4,7 +4,7 @@ from PIL import Image
 cwd = os.getcwd()
 train_path = os.path.join(cwd,'raw_train_data')
 dest_path = os.path.join(cwd,'new_train_data')
-new_dim = [400,600]
+new_dim = [240,240]
 
 
 def create_image_data():
