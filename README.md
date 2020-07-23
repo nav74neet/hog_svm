@@ -1,5 +1,3 @@
-# hog_svm
-
 # Histogram Of Oriented Gradients (HOG) for Face morphing detection
 HOG method is one of the famous techniques for object recognition and edge detection. This method has been proposed by N. Dalal and B. Triggs in their research paper - "Histograms of Oriented Gradients for Human Detection, CVPR, 2005". 
 
@@ -46,12 +44,10 @@ Run the train.py code as follows:
 ```
 train.py train
 ```
-When prompted, for Logistic Classification: enter 'LOGIST'; for Linear SVM MulitClass classification : enter 'SVM'
-
+When prompted for Linear SVM MulitClass classification : enter 'SVM'
 
 2) For classifying based on folder names in the 'new_train_data' :
 ```
 train.py classify
 ```
-
-When prompted for Linear SVM MulitClass classification : enter 'SVM'
+Note: When prompted for Linear SVM MulitClass classification : enter 'SVM'
