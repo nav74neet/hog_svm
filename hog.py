@@ -1,25 +1,3 @@
-
-"""
-//HOG FEATURES EXTRACTION :
-Hog descriptor uses edge detection by gradient calculation and histograms of gradients,
-with magnitudes as weights
-
-The code uses [-1 0 -1] kernel for gradient magnitude and orientation calculation
-Gradients are calculated in the range [0,180]
-Histograms of 8 bins are calculated with magnitudes as weights
-Each image is checked if its of 32X32 size, else its resized
-The code reads images in greyscale.
-
-The images are normalised for gamma, and then, for normal contrast
-Each 32X32 image pixel matrix, is organised into 8X8 cells and then, histograms
-are calculated for each cell. Then, a 4X4 matrix with 8 bins in each cell is obtained
-
-This matrix is organised as 2X2 blocks(with 50% overlap) and normalised, by dividing with the
-magnitude of histogram bins' vector.
-A total of 9 blocks X 4 cells X 8 bins  = 288 features
-
-"""
-
 import os, sys
 import matplotlib.pyplot as plt
 import matplotlib.image as iread
@@ -34,8 +12,8 @@ cwd = os.getcwd()
 #stide = 50, incr stands for this
 cell = [8, 8]
 incr = [8,8]
-bin_num = 8
-im_size = [400,600]
+bin_num = 9
+im_size = [240,240]
 
 
 #image path must be wrt current working directory
@@ -55,7 +33,7 @@ def create_grad_array(image_array):
 	image_array = np.asarray(image_array,dtype=float)
 
 	# gamma correction
-	image_array = (image_array)**2.5
+	image_array = (image_array)**3
 
 	# local contrast normalisation
 	image_array = (image_array-np.mean(image_array))/np.std(image_array)
@@ -118,7 +96,7 @@ def create_hog_features(grad_array,mag_array):
 
 	cell_array = np.reshape(cell_array,(max_h, max_w, bin_num))
 	#normalising blocks of cells
-	block = [2,2]
+	block = [16,16]
 	#here increment is 1
 
 	max_h = int((max_h-block[0])+1)
@@ -144,11 +122,9 @@ def create_hog_features(grad_array,mag_array):
 		i += 1
 		h += 1
 
-	#returns a vextor array list of 288 elements
 	return block_list
 
 #image_array must be an array
-#returns a 288 features vector from image array
 def apply_hog(image_array):
 	gradient,magnitude = create_grad_array(image_array)
 	hog_features = create_hog_features(gradient,magnitude)
