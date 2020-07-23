@@ -2,10 +2,7 @@
 HOG method is one of the famous techniques for object recognition and edge detection. This method has been proposed by N. Dalal and B. Triggs in their research paper - "Histograms of Oriented Gradients for Human Detection, CVPR, 2005". 
 
 ## Getting Started - Feature Extraction Using HOG
-The HOG descriptor's code uploaded here, is for classification of car logos.
-Hog descriptor uses edge detection by gradient calculation and histograms of gradients, with magnitudes as weights.
-The code uses [-1 0 -1] kernel for gradient magnitude and orientation calculation. Gradients are calculated in the range [0,180]. Histograms of 8 bins are calculated with magnitudes as weights. Each image is checked if its of 32X32 size, else its resized. The code reads images in greyscale.
-The images are normalised for gamma, and then, for normal contrast. Each 32X32 image pixel matrix, is organised into 8X8 cells and then, histograms are calculated for each cell. Then, a 4X4 matrix with 8 bins in each cell is obtained. This matrix is organised as 2X2 blocks(with 50% overlap) and normalised, by dividing with the magnitude of histogram bins' vector. A total of 9 blocks X 4 cells X 8 bins  = 288 features
+The parameters used to compute the HoG are as per the de-fault detector used by N. Dalal and B. Triggs in "Histograms of Oriented Gradients for Human Detection, CVPR, 2005", as these give optimal performance.The image size used is 240*240 pixels and is divided into 8* 8 cells and a histogram is computed for each cell. A binsize of 9 is used for the orientation as it is proven to improveperformance significantly, hence each histogram results ina 9 * 1 vector. Block normalization is done by dividing theimage into blocks of 16 * 16 each of which contains four 8 * 8pixel cells so each 16 * 16 block contains 4 histograms, whichgives a 36 * 1 vector for each block. As cell size is 8, hence240/8 - 1 gives the number of blocks for each axis. The totalnumber of blocks is 29 * 29. Hence the size of one featurevector is 29 * 29 * 3 which is a vector of size 30276 * 1.
 
 
 ### Requirements
