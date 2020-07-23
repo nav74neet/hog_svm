@@ -29,24 +29,22 @@ Contains the required functions for extracting histograms from images after pre-
 hog.py
 ```
 
-### train.py
+### Training
 
-
-Dataset preparation:
+#### Dataset preparation:
 
 First run the code - 'prepare_data.py'; for this, create the data as needed in the folder - 'raw_train_data', in current folder. The main 'raw_data_folder', must contain sub-folders of classes (say "Real Images" or "Morphed Images"). The data for training will be saved in the 'new_train_data'
 
 Note: The default paths can be changed in the beginning of each code.
 
-Run the train.py code as follows:
-
-1) For training data :
+#### For training data :
 ```
 train.py train
 ```
 When prompted for Linear SVM MulitClass classification : enter 'SVM'
 
-2) For classifying based on folder names in the 'new_train_data' :
+### Classification
+For classifying based on folder names in the 'new_train_data' :
 ```
 train.py classify
 ```
